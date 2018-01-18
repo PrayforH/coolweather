@@ -3,6 +3,7 @@ package com.example.mercurial.coolweather;
 import android.annotation.TargetApi;
 import android.app.Fragment;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -81,6 +82,12 @@ public class ChooseAreaFragment extends Fragment {
                 }else if (currentLevel == LEVER_CITY){
                     selectedCity = cityList.get(i);
                     queryCounties();
+                }else if (currentLevel == LEVER_COUNTY){
+                    String weatherId = countyList.get(i).getWeatherId();
+                    Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                    intent.putExtra("weather_id", weatherId);
+                    startActivity(intent);
+                    getActivity().finish();
                 }
             }
         });
